@@ -1,0 +1,11 @@
+.counter-container {
+  width: 150px;
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+.w-10 {
+  max-width: 10%;
+}
