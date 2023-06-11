@@ -1,11 +1,91 @@
-.counter-container {
-  width: 150px;
-  height: 300px;
-  border: 1px solid black;
+/* Global Styles */
+.border {
+  border: 1px solid #000;
   border-radius: 5px;
+}
+/* Header Styles */
+header {
+  width: 100%;
+  height: 75px;
+  border-bottom: 1px solid #000;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+.title {
+  padding-left: 15px;
+}
+.links > a:hover {
+  cursor: pointer;
+}
+
+.sign-in {
+  padding-right: 5px;
+}
+.sign-up {
+ padding-right: 15px;
+}
+
+/* Counter Section */
+.counter-section {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.card {
+  height: 200px;
+  width: 225px;
+}
+.card-title {
+  padding-top: 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.75rem;
+}
+.input-container {
   display: flex;
   justify-content: center;
+  margin-top: 45px;
 }
-.w-10 {
-  max-width: 10%;
+
+.total {
+  text-align: center;
+  width: 60px;
+  height: 40px;
+  font-size: 1.75rem;
+}
+.plus-btn {
+  margin-right: 15px;
+
+}
+.minus-btn {
+  margin-left: 15px;
+}
+
+.btn-container {
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+.btn {
+  width: 100px;
+  padding: 10px;
+  text-align: center;
+}
+.btn:hover {
+  cursor: pointer;
+}
+
+.save {
+  background-color: #008000;
+  color: #fff
+}
+
+.delete {
+  background-color: #ff0000;
+  color: white;
 }
