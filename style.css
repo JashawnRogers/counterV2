@@ -3,6 +3,21 @@
   border: 1px solid #000;
   border-radius: 5px;
 }
+.btn {
+  width: 100px;
+  padding: 10px;
+  text-align: center;
+}
+.btn:hover {
+  cursor: pointer;
+}
+.grow {
+  transition: all 0.2s ease-in-out;
+}
+.grow:hover {
+  transform: scale(1.1);
+}
+/* *********************************************************************************************************** */
 /* Header Styles */
 header {
   width: 100%;
@@ -17,19 +32,25 @@ header {
 }
 .title {
   padding-left: 15px;
+  padding-top: 25px;
+  font-size: 2rem;
+  font-weight: 700;
 }
-.links > a:hover {
+.links {
+  padding-top: 20px;
+  padding-right: 30px;
+}
+.links > button:hover {
   cursor: pointer;
 }
 
 .sign-in {
-  padding-right: 5px;
+  margin-right: 15px;
 }
 .sign-up {
- padding-right: 15px;
+ margin-right: 15px;
 }
-
-
+/* *********************************************************************************************************** */
 /* Counter Section */
 .counter-section {
   padding-top: 20px;
@@ -72,14 +93,6 @@ header {
   margin-top: 25px;
   margin-bottom: 10px;
 }
-.btn {
-  width: 100px;
-  padding: 10px;
-  text-align: center;
-}
-.btn:hover {
-  cursor: pointer;
-}
 
 .save {
   background-color: #008000;
@@ -90,7 +103,7 @@ header {
   background-color: #ff0000;
   color: white;
 }
-
+/* *********************************************************************************************************** */
 /* Table Section */
 .table-container {
   margin-top: 25px;
@@ -118,7 +131,7 @@ th {
 tr:nth-of-type(2n) {
   background:hsl(0 0% 0% / 0.15);
 }
-
+/* *********************************************************************************************************** */
 /* Media Queries For Responsiveness */
 @media (max-width: 650px) {
   th {
