@@ -29,6 +29,7 @@ header {
  padding-right: 15px;
 }
 
+
 /* Counter Section */
 .counter-section {
   padding-top: 20px;
@@ -88,4 +89,58 @@ header {
 .delete {
   background-color: #ff0000;
   color: white;
+}
+
+/* Table Section */
+.table-container {
+  margin-top: 25px;
+  padding: 1rem;
+}
+table {
+  background: #D3D3D3;
+  margin: auto;
+}
+th, td, caption {
+  padding: 0.75rem;
+  text-align: center;
+  /* background: #fff; */
+}
+caption {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+th {
+  background:hsl(0 0% 0% / 0.35);
+}
+
+tr:nth-of-type(2n) {
+  background:hsl(0 0% 0% / 0.15);
+}
+
+/* Media Queries For Responsiveness */
+@media (max-width: 650px) {
+  th {
+    display: none;
+  }
+
+  td {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 15ch auto;
+    padding: 0.5rem 1rem;
+  }
+
+  td:first-child {
+    padding-top: 2rem;
+  }
+
+  td:last-child {
+    padding-bottom: 2rem;
+  }
+
+  td::before {
+    content: attr(data-cell) ": ";
+  }
 }
