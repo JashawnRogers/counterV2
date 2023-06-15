@@ -58,6 +58,71 @@
       <button title="save-btn" class="save btn border grow">Save</button>
       <button title="deleteAll-btn" class="delete btn border grow">Delete All</button>
     </div>
+
+    <div class="signIn-container border">
+      <form action="submit">
+        <div class="form-header">
+          <h2 class="card-title">Sign In</h2>
+          <button type="submit" class="close-modal circle-border" title="close-modal"><i class="fa-solid fa-x fa-xs"></i></button>
+        </div>
+
+        <input type="text" title="username" class="border" placeholder="Username">
+        <input type="text" title="password" class="border" placeholder="Password">
+        <a href="#" class="forgot-password" title="forgot-password"><em>Forgot password?</em></a>
+
+        <div class="form-btn-container">
+          <button type="submit" title="submitForm" class="btn border">Sign in</button>
+        </div>
+
+        <div class="signIn-form-footer">
+          <p>Don't have an account? <a href="#" class="sign-up-link" title="sign-up-link">Sign up</a></p>
+        </div>
+      </form>
+    </div>
+
+    <div class="signUp-container border">
+      <form action="submit">
+        <div class="form-header">
+          <h2 class="card-title">Sign up</h2>
+          <button type="submit" class="close-modal circle-border" title="close-modal"><i class="fa-solid fa-x fa-xs"></i></button>
+        </div>
+        
+        <input type="text" title="username" class="border" placeholder="Username">
+        <input type="text" title="password" class="border" placeholder="Password">
+        <input type="text" title="password" class="border" placeholder="Re-enter password">
+        
+
+        <div class="form-btn-container">
+          <button type="submit" title="submitForm" class="btn border form-submit-btn">Sign up</button>
+        </div>
+
+        <div class="signUp-form-footer">
+          <p>Already have an account? <a href="#" class="sign-up-link" title="sign-in-link">Sign in</a></p>
+        </div>
+      </form>
+    </div>
+
+    <div class="forgot-password-container border">
+      <form action="submit">
+        <div class="form-header">
+          <h2 class="card-title">Reset password</h2>
+          <button type="submit" class="close-modal circle-border" title="close-modal"><i class="fa-solid fa-x fa-xs"></i></button>
+        </div>
+        
+        <input type="text" title="username" class="border disabled-text" placeholder="Username">
+        <input type="text" title="password" class="border" placeholder="Password">
+        <input type="text" title="password" class="border" placeholder="Re-enter password">
+        
+
+        <div class="form-btn-container">
+          <button type="submit" title="submitForm" class="btn border form-submit-btn reset-btn">Reset password</button>
+        </div>
+
+        <div class="signUp-form-footer">
+          <p>Already have an account? <a href="#" class="sign-up-link" title="sign-in-link">Sign in</a></p>
+        </div>
+      </form>
+    </div>
   </section>
 
   <section class="table-container">

@@ -1,12 +1,11 @@
-/* TO DO: 
-  o Fix header on mobile S devices (min width 320px)
-    o Buttons are too large for the area to display side by side
-  o Use grid to position cards in 3 columns in counter section on larger screen sizes
-*/
 /* Global Styles */
 .border {
   border: 1px solid #000;
   border-radius: 5px;
+}
+.circle-border {
+  border: 1px solid #000;
+  border-radius: 50%;
 }
 .btn {
   width: 100px;
@@ -21,6 +20,19 @@
 }
 .grow:hover {
   transform: scale(1.1);
+}
+a {
+  text-decoration: underline;
+}
+a:hover {
+  cursor: pointer;
+}
+
+.disabled-text {
+  -webkit-user-select: none; /* For Safari */
+  -moz-user-select: none; /* For Firefox */
+  -ms-user-select: none; /* For Internet Explorer/Edge */
+  user-select: none;
 }
 /* *********************************************************************************************************** */
 /* Header Styles */
@@ -40,12 +52,8 @@ header {
   padding-left: 10px;
   font-size: 1.25rem;
   font-weight: 700;
-  margin-left: 17px;
+  margin-left: 0px;
 }
-
-
-/* ^  for larger screen size*/
-
 .links {
   display: flex;
 }
@@ -140,6 +148,76 @@ tr:nth-of-type(2n) {
   background:hsl(0 0% 0% / 0.15);
 }
 /* *********************************************************************************************************** */
+/* Modal */
+.signIn-container, .signUp-container, .forgot-password-container{
+  display: none;
+  z-index: 2;
+  width: 25rem;
+  height: 20rem;
+  background-color: #D3D3D3;
+  position: absolute;
+}
+.forgot-password-container {
+  display: block !important;
+}
+.close-modal {
+  margin-top: .5rem;
+  margin-right: .5rem;
+  width: 40px;
+  height: 40px;
+  padding-left: 15px;
+  background: #fff;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-top: 3rem; */
+}
+.form-header {
+  height: 65px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.form-header > h2 {
+  margin-left: .5rem;
+}
+form > input {
+  height: 2rem;
+  margin-top: 1rem;
+  width: 75%;
+  padding-left: 0.5rem;
+  background: #fff;
+}
+.forgot-password {
+  margin-top: .5rem;
+  margin-left: 40%;
+}
+.form-btn-container {
+  height: 65px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.form-submit-btn {
+  background: #fff;
+}
+.reset-btn {
+  width: 150px !important;
+}
+.signIn-form-footer {
+  width: 100%;
+  padding-top: 1.5rem;
+  text-align: center;
+}
+.signIn-form-footer {
+  width: 100%;
+  text-align: center;
+}
+/* *********************************************************************************************************** */
 /* Media Queries For Responsiveness */
 @media (max-width: 777px) {
   th {
@@ -169,6 +247,11 @@ tr:nth-of-type(2n) {
     margin: 20px 0;
   }
 
+}
+@media (max-width: 425px) {
+  .signIn-container, .signUp-container, .forgot-password-container {
+    width: 18rem;
+  }
 }
 @media (min-width: 778px) {
   .card-container {
