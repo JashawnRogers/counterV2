@@ -1,3 +1,8 @@
+/* TO DO: 
+  o Fix header on mobile S devices (min width 320px)
+    o Buttons are too large for the area to display side by side
+  o Use grid to position cards in 3 columns in counter section on larger screen sizes
+*/
 /* Global Styles */
 .border {
   border: 1px solid #000;
@@ -30,15 +35,19 @@ header {
   justify-content: space-between;
   padding-top: 10px;
 }
+
 .title {
-  padding-left: 15px;
-  padding-top: 25px;
-  font-size: 2rem;
+  padding-left: 10px;
+  font-size: 1.25rem;
   font-weight: 700;
+  margin-left: 17px;
 }
+
+
+/* ^  for larger screen size*/
+
 .links {
-  padding-top: 20px;
-  padding-right: 30px;
+  display: flex;
 }
 .links > button:hover {
   cursor: pointer;
@@ -57,7 +66,6 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
 }
 .card {
   height: 200px;
@@ -66,7 +74,7 @@ header {
 .card-title {
   padding-top: 15px;
   text-align: center;
-  font-weight: bold;
+  font-weight: 300;
   font-size: 1.75rem;
 }
 .input-container {
@@ -133,7 +141,7 @@ tr:nth-of-type(2n) {
 }
 /* *********************************************************************************************************** */
 /* Media Queries For Responsiveness */
-@media (max-width: 650px) {
+@media (max-width: 777px) {
   th {
     display: none;
   }
@@ -155,5 +163,33 @@ tr:nth-of-type(2n) {
 
   td::before {
     content: attr(data-cell) ": ";
+  }
+
+  .card:nth-child(n+2) {
+    margin: 20px 0;
+  }
+
+}
+@media (min-width: 778px) {
+  .card-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+  }
+  .card {
+    margin: 0 10px;
+  }
+  .sign-up {
+    margin-right: 30px;
+  }
+  .title {
+    padding-left: 15px;
+    padding-top: 25px;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  .links {
+    padding-top: 20px;
+    padding-right: 30px;
   }
 }
