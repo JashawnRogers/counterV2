@@ -34,6 +34,12 @@ a:hover {
   -ms-user-select: none; /* For Internet Explorer/Edge */
   user-select: none;
 }
+.display-none {
+display: none;
+}
+.display-block {
+  display: block;
+}
 /* *********************************************************************************************************** */
 /* Header Styles */
 header {
@@ -110,15 +116,13 @@ header {
   margin-bottom: 10px;
 }
 
-.save {
-  background-color: #008000;
-  color: #fff
+/* .save {
+
 }
 
 .delete {
-  background-color: #ff0000;
-  color: white;
-}
+ 
+} */
 /* *********************************************************************************************************** */
 /* Table Section */
 .table-container {
@@ -141,24 +145,21 @@ caption {
 }
 
 th {
-  background:hsl(0 0% 0% / 0.35);
+  background:hsl(0 0% 0%);
+  color: #fff;
 }
 
 tr:nth-of-type(2n) {
-  background:hsl(0 0% 0% / 0.15);
+  background: #eee;
 }
 /* *********************************************************************************************************** */
 /* Modal */
 .signIn-container, .signUp-container, .forgot-password-container{
-  display: none;
   z-index: 2;
   width: 25rem;
   height: 20rem;
   background-color: #D3D3D3;
   position: absolute;
-}
-.forgot-password-container {
-  display: block !important;
 }
 .close-modal {
   margin-top: .5rem;

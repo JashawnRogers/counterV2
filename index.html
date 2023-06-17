@@ -7,8 +7,10 @@
   <title>Counter</title>
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/ramda@0.25/dist/ramda.min.js" defer></script>
   <script src="https://kit.fontawesome.com/dcbd61b77b.js" crossorigin="anonymous"></script>
   <script src="semantic.js" defer></script>
+  <script src="helpers.js" defer></script>
 </head>
 <body>
   <header>
@@ -17,7 +19,7 @@
         Counter App
       </div>
       <div class="links">
-        <button href="#" class="sign-in btn border grow">Sign in</button>
+        <button href="#" class="sign-in btn border grow" id="headerSignInBtn">Sign in</button>
         <button href="#" class="sign-up btn border grow">Sign up</button>
       </div>
     </nav>
@@ -59,7 +61,7 @@
       <button title="deleteAll-btn" class="delete btn border grow">Delete All</button>
     </div>
 
-    <div class="signIn-container border">
+    <div class="signIn-container display-none border" id="signIn">
       <form action="submit">
         <div class="form-header">
           <h2 class="card-title">Sign In</h2>
@@ -80,7 +82,7 @@
       </form>
     </div>
 
-    <div class="signUp-container border">
+    <div class="signUp-container display-none border" id="signUp">
       <form action="submit">
         <div class="form-header">
           <h2 class="card-title">Sign up</h2>
@@ -102,7 +104,7 @@
       </form>
     </div>
 
-    <div class="forgot-password-container border">
+    <div class="forgot-password-container display-none border" id="forgotPassword">
       <form action="submit">
         <div class="form-header">
           <h2 class="card-title">Reset password</h2>
@@ -134,6 +136,13 @@
         <th>Not Found</th>
         <th>Archive</th>
         <th>Date</th>
+      </tr>
+      <tr>
+        <td data-cell="Total">85</td>
+        <td data-cell="Found">31</td>
+        <td data-cell="Not Found">33</td>
+        <td data-cell="Archive">21</td>
+        <td data-cell="Date">6/11/2023 - 10:47 AM</td>
       </tr>
       <tr>
         <td data-cell="Total">85</td>
