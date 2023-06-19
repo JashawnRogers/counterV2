@@ -8,7 +8,22 @@ const on = R.curry(function (eventType, element, callback) {
   };
 });
 
-// Event handlers for account registration and sign in
+const plus = (elem) => {
+  on("click", elem, () => {
+    const total = ++elem.previousElementSibling.value;
+    console.log(total);
+  });
+};
+
+const minus = (elem) => {
+  on("click", elem, () => {
+    const total = --elem.nextElementSibling.value;
+    console.log(total);
+  });
+};
+
+//Event handlers
+//  account registration and sign in
 const openSignInModal = on("click", getElem("headerSignInBtn"), () => {
   getElem("signIn").classList.replace("display-none", "display-block");
 });
@@ -58,3 +73,13 @@ const openSignInLinkPwModal = on(
 const closeForgotPwModal = on("click", getElem("closeForgotPwBtn"), () => {
   getElem("forgotPassword").classList.replace("display-block", "display-none");
 });
+
+//  counter cards even handlers
+plus(getElem("foundPlus"));
+minus(getElem("foundMinus"));
+
+plus(getElem("notFoundPlus"));
+minus(getElem("notFoundMinus"));
+
+plus(getElem("archivePlus"));
+minus(getElem("archiveMinus"));
