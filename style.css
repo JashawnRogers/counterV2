@@ -203,9 +203,12 @@ form > input {
   align-items: center;
   margin-top: 10px;
 }
-.form-submit-btn {
+.form-btn-container > button {
   background: #fff;
 }
+/* .form-submit-btn {
+  background: #fff;
+} */
 .reset-btn {
   width: 150px !important;
 }
