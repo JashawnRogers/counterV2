@@ -30,35 +30,35 @@
       <div class="card border">
         <h2 class="card-title">Found</h2>
         <div class="input-container">
-            <button title="plus-btn" class="plus-btn" id="foundMinus"><i class="fa-solid fa-minus"></i></button>
+            <button type="button" title="plus-btn" class="plus-btn" id="foundMinus"><i class="fa-solid fa-minus"></i></button>
             <input type="text" name="found-total" id="foundTotal" placeholder="0" class="total border">
-            <button title="plus-btn" class="minus-btn" id="foundPlus"><i class="fa-solid fa-plus"></i></button>
+            <button type="button" title="plus-btn" class="minus-btn" id="foundPlus"><i class="fa-solid fa-plus"></i></button>
         </div>
       </div>
   
       <div class="card border">
         <h2 class="card-title">Not Found</h2>
         <div class="input-container">
-            <button title="plus-btn" class="plus-btn" id="notFoundMinus"><i class="fa-solid fa-minus"></i></button>
+            <button type="button" title="plus-btn" class="plus-btn" id="notFoundMinus"><i class="fa-solid fa-minus"></i></button>
             <input type="text" name="notFound-total" id="notFoundTotal" placeholder="0" class="total border">
-            <button title="plus-btn" class="minus-btn" id="notFoundPlus"><i class="fa-solid fa-plus"></i></button>
+            <button type="button" title="plus-btn" class="minus-btn" id="notFoundPlus"><i class="fa-solid fa-plus"></i></button>
         </div>
       </div>
   
       <div class="card border">
         <h2 class="card-title">Archive</h2>
         <div class="input-container">
-            <button title="plus-btn" class="plus-btn" id="archiveMinus"><i class="fa-solid fa-minus"></i></button>
+            <button type="button" title="plus-btn" class="plus-btn" id="archiveMinus"><i class="fa-solid fa-minus"></i></button>
             <input type="text" name="archive-total" id="archiveTotal" placeholder="0" class="total border">
-            <button title="plus-btn" class="minus-btn" id="archivePlus"><i class="fa-solid fa-plus"></i></button>
+            <button type="button" title="plus-btn" class="minus-btn" id="archivePlus"><i class="fa-solid fa-plus"></i></button>
         </div>
       </div>
     </div>
 
 
     <div class="btn-container">
-      <button title="save-btn" class="save btn border grow">Save</button>
-      <button title="deleteAll-btn" class="delete btn border grow">Delete All</button>
+      <button type="button" title="save-btn" class="save btn border grow" id="saveEntry">Save</button>
+      <button type="button" title="deleteAll-btn" class="delete btn border grow" id="deleteAll">Delete All</button>
     </div>
 
     <!-- Modals -->
@@ -128,16 +128,17 @@
   </section>
 
   <section class="table-container">
-    <table class="border">
+    <table class="border" id="table">
       <caption>Saved Entries</caption>
-      <tr>
+      <thead>
         <th>Total</th>
         <th>Found</th>
         <th>Not Found</th>
         <th>Archive</th>
         <th>Date</th>
-      </tr>
-      <tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+      <!-- <tr>
         <td data-cell="Total">85</td>
         <td data-cell="Found">31</td>
         <td data-cell="Not Found">33</td>
@@ -164,7 +165,7 @@
         <td data-cell="Not Found">33</td>
         <td data-cell="Archive">21</td>
         <td data-cell="Date">6/11/2023 - 10:47 AM</td>
-      </tr>
+      </tr> -->
     </table>
   </section>
 </body>
