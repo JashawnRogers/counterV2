@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- <link rel="stylesheet" href="login.css"> -->
+  <script src="https://cdn.jsdelivr.net/npm/ramda@0.25/dist/ramda.min.js" defer></script>
+  <script src="https://kit.fontawesome.com/dcbd61b77b.js" crossorigin="anonymous"></script>
+  <script type="module" src="/js/signup-signin.js" defer></script>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="title grow">
+        Counter App
+      </div>
+    </nav>
+  </header>
+
+  <section class="counter-section">
+  <!-- Modals -->
+    <!-- Sign In Modal -->
+    <div class="signIn-container display-block border" id="signIn">
+      <div class="form-header">
+        <h2 class="card-title">Sign In</h2>
+        <button href="#" class="close-modal circle-border" id="closeSignInBtn" title="close-modal"><i class="fa-solid fa-x fa-xs"></i></button>
+      </div>
+    <form action="submit">
+      <input type="text" title="username" class="border" placeholder="Username">
+      <input type="text" title="password" class="border" placeholder="Password">
+      <a href="#" class="forgot-password" id="forgotPasswordLink" title="forgot-password"><em>Forgot password?</em></a>
+
+      <div class="form-btn-container">
+        <button type="submit" title="submitForm" class="btn border">Sign in</button>
+      </div>
+
+      <div class="signIn-form-footer">
+        <p>Don't have an account? <a href="#" class="sign-up-link" id="signUpLink" title="sign-up-link">Sign up</a></p>
+      </div>
+    </form>
+    </div>
+  <!-- Sign Up Modal -->
+    <div class="signUp-container display-none border" id="signUp">   
+      <div class="form-header">
+        <h2 class="card-title">Sign up</h2>
+        <button href="#" class="close-modal circle-border" id="closeSignUpBtn" title="close-modal"><i class="fa-solid fa-x fa-xs"></i></button>
+      </div>
+    <form action="submit">  
+      <input type="text" title="username" class="border" placeholder="Username">
+      <input type="text" title="password" class="border" placeholder="Password">
+      <input type="text" title="password" class="border" placeholder="Re-enter password">
+      
+
+      <div class="form-btn-container">
+        <button type="submit" title="submitForm" class="btn border form-submit-btn">Sign up</button>
+      </div>
+
+      <div class="signUp-form-footer">
+        <p>Already have an account? <a href="#" id="signInLink-signUpModal" title="sign-in-link">Sign in</a></p>
+      </div>
+    </form>
+    </div>
+  <!-- Forgot Password Modal -->
+    <div class="forgot-password-container display-none border" id="forgotPassword">
+    
+      <div class="form-header">
+        <h2 class="card-title">Reset password</h2>
+        <button href="#" class="close-modal circle-border" id="closeForgotPwBtn" title="close-modal"><i class="fa-solid fa-x fa-xs"></i></button>
+      </div>
+    <form action="submit">  
+      <input type="text" title="username" class="border disabled-text" placeholder="Username">
+      <input type="text" title="password" class="border" placeholder="Password">
+      <input type="text" title="password" class="border" placeholder="Re-enter password">
+      
+
+      <div class="form-btn-container">
+        <button type="submit" title="submitForm" class="btn border form-submit-btn reset-btn">Reset password</button>
+      </div>
+
+      <div class="signUp-form-footer">
+        <p>Already have an account? <a href="#" class="sign-up-link" id="signInLink-forgotPwModal" title="sign-in-link">Sign in</a></p>
+      </div>
+    </form>
+    </div>
+  </section>
+</body>
+</html>
