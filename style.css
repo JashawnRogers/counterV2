@@ -161,15 +161,12 @@ tr:nth-of-type(2n) {
   background-color: #D3D3D3;
   position: absolute;
 }
-.signUp-container, .forgot-password-container {
-  height: 22rem !important;
-}
 .close-modal {
-  margin-top: .6rem;
+  margin-top: .5rem;
   margin-right: .5rem;
   width: 40px;
   height: 40px;
-  padding-left: 5px;
+  padding-left: 15px;
   background: #fff;
 }
 form {
@@ -217,15 +214,10 @@ form > input {
 }
 .signIn-form-footer {
   width: 100%;
-  padding-top: 0.65rem;
+  padding-top: 1.5rem;
   text-align: center;
 }
 .signIn-form-footer {
-  width: 100%;
-  text-align: center;
-}
-
-.signUp-form-footer {
   width: 100%;
   text-align: center;
 }
