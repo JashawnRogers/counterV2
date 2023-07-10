@@ -75,7 +75,7 @@ header {
 }
 /* *********************************************************************************************************** */
 /* Counter Section */
-.counter-section {
+section {
   padding-top: 20px;
   display: flex;
   flex-direction: column;

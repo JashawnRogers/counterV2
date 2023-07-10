@@ -120,3 +120,5 @@ minus(getElem("notFoundMinus"));
 
 plus(getElem("archivePlus"));
 minus(getElem("archiveMinus"));
+
+export { getElem, on };

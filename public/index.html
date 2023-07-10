@@ -7,10 +7,34 @@
   <title>Counter</title>
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="style.css">
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script>
+    var firebaseConfig = {
+      // TODO: Add your our config here
+      apiKey: "AIzaSyAfRNkjMhoZ1vmtozGCGNwkJRRKOs12mt0",
+      authDomain: "verra-task-tracker.firebaseapp.com",
+      projectId: "verra-task-tracker",
+      storageBucket: "verra-task-tracker.appspot.com",
+      messagingSenderId: "16777778580",
+      appId: "1:16777778580:web:c73a864669bdde374eab81",
+      measurementId: "G-77LER6MYXZ"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/ramda@0.25/dist/ramda.min.js" defer></script>
   <script src="https://kit.fontawesome.com/dcbd61b77b.js" crossorigin="anonymous"></script>
   <script src="semantic.js" defer></script>
-  <script src="helpers.js" defer></script>
+  <script type="module" src="app.js" defer></script>
+  <script type="module" src="auth.js" defer></script>
 </head>
 <body>
   <header>
@@ -25,7 +49,7 @@
     </nav>
   </header>
 
-  <section class="counter-section">
+  <section class="counter-section display-none">
     <div class="card-container">
       <div class="card border">
         <h2 class="card-title">Found</h2>
@@ -61,16 +85,33 @@
       <button type="button" title="deleteAll-btn" class="delete btn border grow" id="deleteAll">Delete All</button>
     </div>
 
+    <div class="table-container">
+      <table class="border" id="table">
+        <caption>Saved Entries</caption>
+        <thead>
+          <th>Total</th>
+          <th>Found</th>
+          <th>Not Found</th>
+          <th>Archive</th>
+          <th>Date</th>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+
     <!-- Modals -->
     <!-- Sign In Modal -->
-    <div class="signIn-container display-none border" id="signIn">
+  <section class="auth">
+    <div class="signIn-container display-block border" id="signIn">
         <div class="form-header">
           <h2 class="card-title">Sign In</h2>
           <button href="#" class="close-modal circle-border" id="closeSignInBtn" title="close-modal"><i class="fa-solid fa-x fa-xs"></i></button>
         </div>
       <form action="submit">
-        <input type="text" title="username" class="border" placeholder="Username">
-        <input type="text" title="password" class="border" placeholder="Password">
+        <input type="text" title="username" class="border" placeholder="Username" id="signInUserName">
+        <input type="text" title="password" class="border" placeholder="Password" id="signInUserPassword">
         <a href="#" class="forgot-password" id="forgotPasswordLink" title="forgot-password"><em>Forgot password?</em></a>
 
         <div class="form-btn-container">
@@ -89,13 +130,13 @@
           <button href="#" class="close-modal circle-border" id="closeSignUpBtn" title="close-modal"><i class="fa-solid fa-x fa-xs"></i></button>
         </div>
       <form action="submit">  
-        <input type="text" title="username" class="border" placeholder="Username">
-        <input type="text" title="password" class="border" placeholder="Password">
+        <input type="text" title="username" class="border" placeholder="Username" id="signUpUserName">
+        <input type="text" title="password" class="border" placeholder="Password" id="signUpPassword">
         <input type="text" title="password" class="border" placeholder="Re-enter password">
         
 
         <div class="form-btn-container">
-          <button type="submit" title="submitForm" class="btn border form-submit-btn">Sign up</button>
+          <button type="submit" title="submitForm" class="btn border form-submit-btn" id="signUpSubmitBtn">Sign up</button>
         </div>
 
         <div class="signUp-form-footer">
@@ -125,48 +166,6 @@
         </div>
       </form>
     </div>
-  </section>
-
-  <section class="table-container">
-    <table class="border" id="table">
-      <caption>Saved Entries</caption>
-      <thead>
-        <th>Total</th>
-        <th>Found</th>
-        <th>Not Found</th>
-        <th>Archive</th>
-        <th>Date</th>
-      </thead>
-      <tbody id="tableBody"></tbody>
-      <!-- <tr>
-        <td data-cell="Total">85</td>
-        <td data-cell="Found">31</td>
-        <td data-cell="Not Found">33</td>
-        <td data-cell="Archive">21</td>
-        <td data-cell="Date">6/11/2023 - 10:47 AM</td>
-      </tr>
-      <tr>
-        <td data-cell="Total">85</td>
-        <td data-cell="Found">31</td>
-        <td data-cell="Not Found">33</td>
-        <td data-cell="Archive">21</td>
-        <td data-cell="Date">6/11/2023 - 10:47 AM</td>
-      </tr>
-      <tr>
-        <td data-cell="Total">85</td>
-        <td data-cell="Found">31</td>
-        <td data-cell="Not Found">33</td>
-        <td data-cell="Archive">21</td>
-        <td data-cell="Date">6/11/2023 - 10:47 AM</td>
-      </tr>
-      <tr>
-        <td data-cell="Total">85</td>
-        <td data-cell="Found">31</td>
-        <td data-cell="Not Found">33</td>
-        <td data-cell="Archive">21</td>
-        <td data-cell="Date">6/11/2023 - 10:47 AM</td>
-      </tr> -->
-    </table>
   </section>
 </body>
 </html>
