@@ -45,11 +45,12 @@
       <div class="links">
         <button href="#" class="sign-in btn border grow" id="headerSignInBtn">Sign in</button>
         <button href="#" class="sign-up btn border grow" id="headerSignUpBtn">Sign up</button>
+        <button href="#" class="sign-up btn border grow display" id="headerSignOutBtn">Sign out</button>
       </div>
     </nav>
   </header>
 
-  <section class="counter-section display-none">
+  <section class="counter-section display-none" id="counterSection">
     <div class="card-container">
       <div class="card border">
         <h2 class="card-title">Found</h2>
@@ -103,7 +104,7 @@
 
     <!-- Modals -->
     <!-- Sign In Modal -->
-  <section class="auth">
+  <section class="auth" id="authSection">
     <div class="signIn-container display-block border" id="signIn">
         <div class="form-header">
           <h2 class="card-title">Sign In</h2>
@@ -115,7 +116,7 @@
         <a href="#" class="forgot-password" id="forgotPasswordLink" title="forgot-password"><em>Forgot password?</em></a>
 
         <div class="form-btn-container">
-          <button type="submit" title="submitForm" class="btn border">Sign in</button>
+          <button type="submit" title="submitForm" class="btn border" id="signInSubmitBtn">Sign in</button>
         </div>
 
         <div class="signIn-form-footer">
@@ -131,7 +132,7 @@
         </div>
       <form action="submit">  
         <input type="text" title="username" class="border" placeholder="Username" id="signUpUserName">
-        <input type="text" title="password" class="border" placeholder="Password" id="signUpPassword">
+        <input type="text" title="password" class="border" placeholder="Password" id="signUpUserPassword">
         <input type="text" title="password" class="border" placeholder="Re-enter password">
         
 
