@@ -7,6 +7,9 @@
   <title>Counter</title>
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@200&display=swap" rel="stylesheet">
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
@@ -36,23 +39,26 @@
   <script type="module" src="app.js" defer></script>
   <script type="module" src="auth.js" defer></script>
 </head>
-<body>
+<body id="htmlBody">
   <header>
     <nav class="nav">
       <div class="title grow">
-        Counter App
+        <h1>Task Tracker</h1>
       </div>
       <div class="links">
-        <button href="#" class="sign-in btn border grow" id="headerSignInBtn">Sign in</button>
-        <button href="#" class="sign-up btn border grow" id="headerSignUpBtn">Sign up</button>
-        <button href="#" class="sign-up btn border grow display" id="headerSignOutBtn">Sign out</button>
+        <button href="#" class="sign-in btn border glass grow" id="headerSignInBtn"><p>Sign in</p></button>
+        <button href="#" class="sign-up btn border glass grow" id="headerSignUpBtn"><p>Sign up</p></button>
+        <button href="#" class="sign-up btn border glass grow display" id="headerSignOutBtn"><p>Sign out</p></button>
       </div>
     </nav>
   </header>
 
-  <section class="counter-section display-none" id="counterSection">
+  <div class="circle1" id="circle1"></div>
+  <div class="circle2" id="circle2"></div>
+
+  <section class="counter-section" id="counterSection">
     <div class="card-container">
-      <div class="card border">
+      <div class="card glass border">
         <h2 class="card-title">Found</h2>
         <div class="input-container">
             <button type="button" title="plus-btn" class="plus-btn" id="foundMinus"><i class="fa-solid fa-minus"></i></button>
@@ -61,7 +67,7 @@
         </div>
       </div>
   
-      <div class="card border">
+      <div class="card glass border">
         <h2 class="card-title">Not Found</h2>
         <div class="input-container">
             <button type="button" title="plus-btn" class="plus-btn" id="notFoundMinus"><i class="fa-solid fa-minus"></i></button>
@@ -70,7 +76,7 @@
         </div>
       </div>
   
-      <div class="card border">
+      <div class="card glass border">
         <h2 class="card-title">Archive</h2>
         <div class="input-container">
             <button type="button" title="plus-btn" class="plus-btn" id="archiveMinus"><i class="fa-solid fa-minus"></i></button>
@@ -82,19 +88,21 @@
 
 
     <div class="btn-container">
-      <button type="button" title="save-btn" class="save btn border grow" id="saveEntry">Save</button>
-      <button type="button" title="deleteAll-btn" class="delete btn border grow" id="deleteAll">Delete All</button>
+      <div class="buttons">
+        <button type="button" title="save-btn" class="save btn glass border grow" id="saveEntry"><p>Save</p></button>
+        <button type="button" title="deleteAll-btn" class="delete glass btn border grow" id="deleteAll"><p>Delete All</p></button>
+      </div>
     </div>
 
     <div class="table-container">
-      <table class="border" id="table">
-        <caption>Saved Entries</caption>
+      <table class="border glass" id="table">
+        <caption><h3>Saved Entries</h3></caption>
         <thead>
-          <th>Total</th>
-          <th>Found</th>
-          <th>Not Found</th>
-          <th>Archive</th>
-          <th>Date</th>
+          <th><p>Total</p></th>
+          <th><p>Found</p></th>
+          <th><p>Not Found</p></th>
+          <th><p>Archive</p></th>
+          <th><p>Date</p></th>
         </thead>
         <tbody id="tableBody"></tbody>
       </table>
@@ -104,8 +112,8 @@
 
     <!-- Modals -->
     <!-- Sign In Modal -->
-  <section class="auth" id="authSection">
-    <div class="signIn-container display-block border" id="signIn">
+  <section class="auth-section" id="authSection">
+    <div class="signIn-container display-block border glass" id="signIn">
         <div class="form-header">
           <h2 class="card-title">Sign In</h2>
           <button href="#" class="close-modal circle-border" id="closeSignInBtn" title="close-modal"><i class="fa-solid fa-x fa-xs"></i></button>
@@ -113,10 +121,10 @@
       <form action="submit">
         <input type="text" title="username" class="border" placeholder="Username" id="signInUserName">
         <input type="text" title="password" class="border" placeholder="Password" id="signInUserPassword">
-        <a href="#" class="forgot-password" id="forgotPasswordLink" title="forgot-password"><em>Forgot password?</em></a>
+        <!-- <a href="#" class="forgot-password" id="forgotPasswordLink" title="forgot-password"><em>Forgot password?</em></a> -->
 
         <div class="form-btn-container">
-          <button type="submit" title="submitForm" class="btn border" id="signInSubmitBtn">Sign in</button>
+          <button type="submit" title="submitForm" class="btn border" id="signInSubmitBtn"><p>Sign in</p></button>
         </div>
 
         <div class="signIn-form-footer">
@@ -125,7 +133,7 @@
       </form>
     </div>
     <!-- Sign Up Modal -->
-    <div class="signUp-container display-none border" id="signUp">   
+    <div class="signUp-container display-none border glass" id="signUp">   
         <div class="form-header">
           <h2 class="card-title">Sign up</h2>
           <button href="#" class="close-modal circle-border" id="closeSignUpBtn" title="close-modal"><i class="fa-solid fa-x fa-xs"></i></button>
@@ -137,7 +145,7 @@
         
 
         <div class="form-btn-container">
-          <button type="submit" title="submitForm" class="btn border form-submit-btn" id="signUpSubmitBtn">Sign up</button>
+          <button type="submit" title="submitForm" class="btn border form-submit-btn" id="signUpSubmitBtn"><p>Sign up</p></button>
         </div>
 
         <div class="signUp-form-footer">
@@ -146,7 +154,7 @@
       </form>
     </div>
     <!-- Forgot Password Modal -->
-    <div class="forgot-password-container display-none border" id="forgotPassword">
+    <!-- <div class="forgot-password-container display-none border" id="forgotPassword">
       
         <div class="form-header">
           <h2 class="card-title">Reset password</h2>
@@ -166,7 +174,7 @@
           <p>Already have an account? <a href="#" class="sign-up-link" id="signInLink-forgotPwModal" title="sign-in-link">Sign in</a></p>
         </div>
       </form>
-    </div>
+    </div> -->
   </section>
 </body>
 </html>
