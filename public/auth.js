@@ -58,12 +58,14 @@ const checkAuthState = async () => {
     if (user) {
       // signed in
       // take out display classes in html and just add them here instead of replacing them
-      getElem("authSection").classList.add("display-none");
-      getElem("counterSection").classList.add("display-block");
-      getElem("signIn").classList.replace("display-block", "display-none");
-      getElem("headerSignInBtn").classList.add("display-none");
-      getElem("headerSignUpBtn").classList.add("display-none");
-      getElem("headerSignOutBtn").classList.add("display-block");
+      getElem("authSection").style.display = "none";
+      getElem("counterSection").style.display = "flex";
+      // getElem("counterSection").style.height = "100%";
+      getElem("signIn").style.display = "none";
+      getElem("signUp").style.display = "none";
+      getElem("headerSignInBtn").style.display = "none";
+      getElem("headerSignUpBtn").style.display = "none";
+      getElem("headerSignOutBtn").style.display = "block";
       getElem("circle1").style.top = "2%";
       getElem("circle1").style.right = "11%";
       getElem("circle2").style.bottom = "9%";
@@ -73,9 +75,21 @@ const checkAuthState = async () => {
     } else {
       // signed out
       // take out display classes in html and just add them here instead of replacing them
-      getElem("counterSection").classList.add("display-none");
-      getElem("authSection").classList.add("display-block");
-      getElem("headerSignOutBtn").classList.add("display-none");
+      getElem("signIn").style.display = "block";
+      getElem("signUp").style.display = "none";
+
+      getElem("headerSignInBtn").style.display = "block";
+      getElem("headerSignUpBtn").style.display = "block";
+
+      getElem("circle1").style.top = "23%";
+      getElem("circle1").style.right = "20%";
+      getElem("circle2").style.bottom = "5%";
+
+      getElem("counterSection").style.display = "none";
+      getElem("authSection").style.display = "flex";
+
+      getElem("headerSignOutBtn").style.display = "none";
+
       getElem("htmlBody").style.height = "100vh";
       console.log("signed out");
     }

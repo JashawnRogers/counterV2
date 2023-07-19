@@ -121,7 +121,7 @@ section {
 .card {
   height: 200px;
   width: 225px;
-  z-index: 5;
+  z-index: 2;
 }
 .card-title {
   padding-top: 15px;
@@ -220,6 +220,7 @@ tr:nth-of-type(2n) {
   height: 40px;
   padding-left: 15px;
   background: #fff;
+  z-index: 2;
 }
 form {
   display: flex;

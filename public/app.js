@@ -33,7 +33,16 @@ const todaysDate = () => {
   return date;
 };
 
-on("click", getElem("saveEntry"), (e) => {
+const getPhxTimeStamp = () => {
+  const now = new Date();
+  return new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Phoenix",
+    timeStyle: "medium",
+    hour12: false,
+  }).format(now);
+};
+
+const createNewEntry = (e) => {
   e.preventDefault();
   const foundTotal = getElem("foundTotal").value;
   const notFoundTotal = getElem("notFoundTotal").value;
@@ -49,45 +58,57 @@ on("click", getElem("saveEntry"), (e) => {
   let c3 = tableRow.insertCell(2);
   let c4 = tableRow.insertCell(3);
   let c5 = tableRow.insertCell(4);
+  let c6 = tableRow.insertCell(5);
+  let c7 = tableRow.insertCell(6);
 
   c1.innerText = total;
   c2.innerText = foundTotal;
   c3.innerText = notFoundTotal;
   c4.innerText = archiveTotal;
   c5.innerText = todaysDate();
+  c6.innerText = getPhxTimeStamp();
+  c7.innerHTML = '<button><i class="fa-solid fa-trash-can fa-sm"></i><button>';
 
   table.appendChild(tableRow);
-});
+
+  return (
+    total, foundTotal, notFoundTotal, archiveTotal, todaysDate, getPhxTimeStamp
+  );
+};
+
+on("click", getElem("saveEntry"), createNewEntry);
 
 //Event handlers
 //  account registration and sign in
 const openSignInModal = on("click", getElem("headerSignInBtn"), () => {
-  getElem("signIn").classList.replace("display-none", "display-block");
+  getElem("signIn").style.display = "block";
+  getElem("signUp").style.display = "none";
 });
 const openSignInLinkSignUpModal = on(
   "click",
   getElem("signInLink-signUpModal"),
   () => {
-    getElem("signUp").classList.replace("display-block", "display-none");
-    getElem("signIn").classList.replace("display-none", "display-block");
+    getElem("signUp").style.display = "none";
+    getElem("signIn").style.display = "block";
   }
 );
 
 const closeSignInModal = on("click", getElem("closeSignInBtn"), () => {
-  getElem("signIn").classList.replace("display-block", "display-none");
+  getElem("signIn").style.display = "none";
 });
 
 const openSignUpModal = on("click", getElem("headerSignUpBtn"), () => {
-  getElem("signUp").classList.replace("display-none", "display-block");
+  getElem("signIn").style.display = "none";
+  getElem("signUp").style.display = "block";
 });
 
 const openSignUpLink = on("click", getElem("signUpLink"), () => {
-  getElem("signIn").classList.replace("display-block", "display-none");
-  getElem("signUp").classList.replace("display-none", "display-block");
+  getElem("signIn").style.display = "none";
+  getElem("signUp").style.display = "block";
 });
 
 const closeSignUpModal = on("click", getElem("closeSignUpBtn"), () => {
-  getElem("signUp").classList.replace("display-block", "display-none");
+  getElem("signUp").style.display = "none";
 });
 
 // const openForgotPwModal = on("click", getElem("forgotPasswordLink"), () => {

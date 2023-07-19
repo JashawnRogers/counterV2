@@ -38,6 +38,7 @@
   <script src="semantic.js" defer></script>
   <script type="module" src="app.js" defer></script>
   <script type="module" src="auth.js" defer></script>
+  <!-- <script type="module" src="/db.js" defer></script> -->
 </head>
 <body id="htmlBody">
   <header>
@@ -48,7 +49,7 @@
       <div class="links">
         <button href="#" class="sign-in btn border glass grow" id="headerSignInBtn"><p>Sign in</p></button>
         <button href="#" class="sign-up btn border glass grow" id="headerSignUpBtn"><p>Sign up</p></button>
-        <button href="#" class="sign-up btn border glass grow display" id="headerSignOutBtn"><p>Sign out</p></button>
+        <button href="#" class="sign-up btn border glass grow" id="headerSignOutBtn"><p>Sign out</p></button>
       </div>
     </nav>
   </header>
@@ -103,6 +104,7 @@
           <th><p>Not Found</p></th>
           <th><p>Archive</p></th>
           <th><p>Date</p></th>
+          <th><p>Time</p></th>
         </thead>
         <tbody id="tableBody"></tbody>
       </table>
@@ -113,7 +115,7 @@
     <!-- Modals -->
     <!-- Sign In Modal -->
   <section class="auth-section" id="authSection">
-    <div class="signIn-container display-block border glass" id="signIn">
+    <div class="signIn-container border glass" id="signIn">
         <div class="form-header">
           <h2 class="card-title">Sign In</h2>
           <button href="#" class="close-modal circle-border" id="closeSignInBtn" title="close-modal"><i class="fa-solid fa-x fa-xs"></i></button>
@@ -133,7 +135,7 @@
       </form>
     </div>
     <!-- Sign Up Modal -->
-    <div class="signUp-container display-none border glass" id="signUp">   
+    <div class="signUp-container border glass" id="signUp">   
         <div class="form-header">
           <h2 class="card-title">Sign up</h2>
           <button href="#" class="close-modal circle-border" id="closeSignUpBtn" title="close-modal"><i class="fa-solid fa-x fa-xs"></i></button>
