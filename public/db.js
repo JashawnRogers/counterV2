@@ -1,6 +1,8 @@
 import { getElem, on, todaysDate, getPhxTimeStamp } from "/app.js";
 
 const db = firebase.firestore();
+let entriesRef;
+let unsubscribe;
 
 const deleteRow = (e) => {
   if (!e.target.classList.contains("fa-trash-can")) return;
@@ -10,8 +12,7 @@ const deleteRow = (e) => {
   btn.closest("tr").remove();
 };
 
-const createNewEntry = (e) => {
-  e.preventDefault();
+const createNewEntry = () => {
   let foundTotal = getElem("foundTotal").value;
   let notFoundTotal = getElem("notFoundTotal").value;
   let archiveTotal = getElem("archiveTotal").value;
@@ -50,10 +51,42 @@ const createNewEntry = (e) => {
 
   table.appendChild(tableRow);
 
-  return (
-    total, foundTotal, notFoundTotal, archiveTotal, todaysDate, getPhxTimeStamp
-  );
+  return total;
 };
 
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    entriesRef = db.collection("Entries");
+
+    on("click", getElem("saveEntry"), () => {
+      createNewEntry();
+
+      if (!getElem("foundTotal").value) {
+        getElem("foundTotal").value = "0";
+      }
+      if (!getElem("notFoundTotal").value) {
+        getElem("notFoundTotal").value = "0";
+      }
+      if (!getElem("archiveTotal").value) {
+        getElem("archiveTotal").value = "0";
+      }
+
+      const total =
+        parseInt(getElem("foundTotal").value) +
+        parseInt(getElem("notFoundTotal").value) +
+        parseInt(getElem("archiveTotal").value);
+
+      entriesRef.add({
+        uid: user.uid,
+        total: total,
+        foundTotal: parseInt(getElem("foundTotal").value),
+        notFoundTotal: parseInt(getElem("notFoundTotal").value),
+        archiveTotal: parseInt(getElem("archiveTotal").value),
+        date: todaysDate(),
+        time: getPhxTimeStamp(),
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+    });
+  }
+});
 on("click", getElem("table"), deleteRow);
-on("click", getElem("saveEntry"), createNewEntry);

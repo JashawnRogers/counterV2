@@ -30,11 +30,13 @@ const todaysDate = () => {
     today.getDate() +
     " / " +
     today.getFullYear();
+  console.log(typeof date);
   return date;
 };
 
 const getPhxTimeStamp = () => {
   const now = new Date();
+  console.log(typeof now);
   return new Intl.DateTimeFormat("en-US", {
     timeZone: "America/Phoenix",
     timeStyle: "medium",
