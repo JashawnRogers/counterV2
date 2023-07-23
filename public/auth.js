@@ -69,7 +69,7 @@ const checkAuthState = async () => {
       getElem("circle1").style.top = "2%";
       getElem("circle1").style.right = "11%";
       getElem("circle2").style.bottom = "9%";
-      getElem("htmlBody").style.height = "100%";
+      // getElem("html").style.height = "100vh";
 
       console.log("signed in");
     } else {

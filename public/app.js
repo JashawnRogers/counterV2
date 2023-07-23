@@ -42,42 +42,6 @@ const getPhxTimeStamp = () => {
   }).format(now);
 };
 
-const createNewEntry = (e) => {
-  e.preventDefault();
-  const foundTotal = getElem("foundTotal").value;
-  const notFoundTotal = getElem("notFoundTotal").value;
-  const archiveTotal = getElem("archiveTotal").value;
-  const total =
-    parseInt(foundTotal) + parseInt(notFoundTotal) + parseInt(archiveTotal);
-
-  const table = getElem("tableBody");
-  const tableRow = table.insertRow(-1);
-
-  let c1 = tableRow.insertCell(0);
-  let c2 = tableRow.insertCell(1);
-  let c3 = tableRow.insertCell(2);
-  let c4 = tableRow.insertCell(3);
-  let c5 = tableRow.insertCell(4);
-  let c6 = tableRow.insertCell(5);
-  let c7 = tableRow.insertCell(6);
-
-  c1.innerText = total;
-  c2.innerText = foundTotal;
-  c3.innerText = notFoundTotal;
-  c4.innerText = archiveTotal;
-  c5.innerText = todaysDate();
-  c6.innerText = getPhxTimeStamp();
-  c7.innerHTML = '<button><i class="fa-solid fa-trash-can fa-sm"></i><button>';
-
-  table.appendChild(tableRow);
-
-  return (
-    total, foundTotal, notFoundTotal, archiveTotal, todaysDate, getPhxTimeStamp
-  );
-};
-
-on("click", getElem("saveEntry"), createNewEntry);
-
 //Event handlers
 //  account registration and sign in
 const openSignInModal = on("click", getElem("headerSignInBtn"), () => {
@@ -142,4 +106,4 @@ minus(getElem("notFoundMinus"));
 plus(getElem("archivePlus"));
 minus(getElem("archiveMinus"));
 
-export { getElem, on };
+export { getElem, on, todaysDate, getPhxTimeStamp };
