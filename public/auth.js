@@ -90,7 +90,7 @@ const checkAuthState = async () => {
 
       getElem("headerSignOutBtn").style.display = "none";
 
-      getElem("htmlBody").style.height = "100vh";
+      // getElem("htmlBody").style.minHeight = "100vh";
       console.log("signed out");
     }
   });
