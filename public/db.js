@@ -1,35 +1,32 @@
 import { getElem, on, todaysDate, getPhxTimeStamp } from "/app.js";
 
 const db = firebase.firestore();
-let entriesRef;
+let entriesRef = db.collection("Entries");
 let unsubscribe;
 
-const deleteRow = (e) => {
-  if (!e.target.classList.contains("fa-trash-can")) return;
-
-  confirm("Are you sure you want to delete?");
-  const btn = e.target;
-  btn.closest("tr").remove();
+const deleteAllRows = () => {
+  const rowCount = getElem("table").rows.length;
+  for (let i = rowCount - 1; i > 0; i--) {
+    getElem("table").deleteRow(i);
+  }
 };
 
-const createNewEntry = () => {
-  let foundTotal = getElem("foundTotal").value;
-  let notFoundTotal = getElem("notFoundTotal").value;
-  let archiveTotal = getElem("archiveTotal").value;
-  if (!foundTotal) {
-    foundTotal = "0";
-  }
-  if (!notFoundTotal) {
-    notFoundTotal = "0";
-  }
-  if (!archiveTotal) {
-    archiveTotal = "0";
-  }
-  const total =
-    parseInt(foundTotal) + parseInt(notFoundTotal) + parseInt(archiveTotal);
+const deleteRow = (e) => {
+  // if (!e.target.classList.contains("fa-trash-can")) return;
 
-  console.log(foundTotal, notFoundTotal, archiveTotal);
+  const confirmation = confirm("Are you sure you want to delete?");
+  if (confirmation) {
+    entriesRef
+      .doc(e.target.id)
+      .delete()
+      .then(() => console.log("successfully deleted"))
+      .catch((err) => console.log("error removing document: ", err));
+  } else {
+    return;
+  }
+};
 
+const renderList = (doc) => {
   const table = getElem("tableBody");
   const tableRow = table.insertRow(-1);
 
@@ -41,36 +38,21 @@ const createNewEntry = () => {
   let c6 = tableRow.insertCell(5);
   let c7 = tableRow.insertCell(6);
 
-  c1.innerText = total;
-  c2.innerText = foundTotal;
-  c3.innerText = notFoundTotal;
-  c4.innerText = archiveTotal;
-  c5.innerText = todaysDate();
-  c6.innerText = getPhxTimeStamp();
-  c7.innerHTML = `<button class="table-delete-btn grow"><i class="fa-solid fa-trash-can fa-sm"></i><button>`;
+  c1.innerText = doc.data().total;
+  c2.innerText = doc.data().foundTotal;
+  c3.innerText = doc.data().notFoundTotal;
+  c4.innerText = doc.data().archiveTotal;
+  c5.innerText = doc.data().date;
+  c6.innerText = doc.data().time;
+  c7.innerHTML = `<button class="table-delete-btn grow"><i id=${doc.id} class="fa-solid fa-trash-can fa-sm"></i><button>`;
 
   table.appendChild(tableRow);
-
-  return total;
 };
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    entriesRef = db.collection("Entries");
-
-    on("click", getElem("saveEntry"), () => {
-      createNewEntry();
-
-      if (!getElem("foundTotal").value) {
-        getElem("foundTotal").value = "0";
-      }
-      if (!getElem("notFoundTotal").value) {
-        getElem("notFoundTotal").value = "0";
-      }
-      if (!getElem("archiveTotal").value) {
-        getElem("archiveTotal").value = "0";
-      }
-
+    on("click", getElem("saveEntry"), (e) => {
+      e.preventDefault();
       const total =
         parseInt(getElem("foundTotal").value) +
         parseInt(getElem("notFoundTotal").value) +
@@ -87,6 +69,27 @@ firebase.auth().onAuthStateChanged((user) => {
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       });
     });
+
+    unsubscribe = entriesRef
+      .where("uid", "==", user.uid)
+      .onSnapshot((snapshot) => {
+        let changes = snapshot.docChanges();
+        changes.forEach((change) => {
+          if (change.type == "added") {
+            renderList(change.doc);
+          } else if (change.type == "removed") {
+            const targetElem = getElem(`${change.doc.id}`);
+            targetElem.closest("tr").remove();
+          }
+        });
+      });
+  } else {
+    deleteAllRows();
+    unsubscribe && unsubscribe();
   }
 });
-on("click", getElem("table"), deleteRow);
+on("click", getElem("table"), (e) => {
+  deleteRow(e);
+});
+// on intial load check for existing data
+// on changes relay changes to ui

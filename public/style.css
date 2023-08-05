@@ -53,7 +53,7 @@ footer {
 h1,h2,h3,h4,h5,h6 {
   font-family: 'Bebas Nue', sans-serif;
 }
-a, p, ::placeholder {
+a, p, input[type="text"],::placeholder, table > tbody >tr {
   font-family: 'Monteserrat', sans-serif;
   font-weight: 200;
 }

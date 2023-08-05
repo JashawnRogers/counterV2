@@ -1,5 +1,7 @@
 import { getElem, on } from "/app.js";
 
+let unsubscribe;
+
 const userSignUp = async (e) => {
   e.preventDefault();
   const signUpUserName = `${getElem("signUpUserName").value}@tasktracker.com`;
@@ -30,7 +32,6 @@ const userSignIn = async (e) => {
     .signInWithEmailAndPassword(signInUserName, signInUserPassword)
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log(user);
       alert("successfull sign in");
     })
     .catch((error) => {
@@ -92,6 +93,8 @@ const checkAuthState = async () => {
 
       // getElem("htmlBody").style.minHeight = "100vh";
       console.log("signed out");
+
+      unsubscribe && unsubscribe();
     }
   });
 };
