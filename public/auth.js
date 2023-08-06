@@ -2,24 +2,51 @@ import { getElem, on } from "/app.js";
 
 let unsubscribe;
 
+const checkPassword = (pw, confirmPw) => {
+  const errors = [];
+  if (pw.length < 6) {
+    errors.push("Your password must be at least 6 characters. ");
+  }
+  if (pw.search(/(?=.*\d)/) < 0) {
+    errors.push("Your password must contain at least one number. ");
+  }
+  if (pw.search(/(?=.*[a-z])/) < 0) {
+    errors.push("Your password must contain at least one lowercase letter. ");
+  }
+  if (pw.search(/(?=.*[A-Z])/) < 0) {
+    errors.push("Your password must contain at least one uppercase letter. ");
+  }
+  if (pw !== confirmPw) {
+    errors.push("The confirmation password does not match. ");
+  }
+  if (errors.length > 0) {
+    alert(errors.join("\n"));
+    return false;
+  }
+  return true;
+};
+
 const userSignUp = async (e) => {
   e.preventDefault();
   const signUpUserName = `${getElem("signUpUserName").value}@tasktracker.com`;
   const signUpUserPassword = getElem("signUpUserPassword").value;
+  const confirmPassword = getElem("confirmPassword").value;
 
-  firebase
-    .auth()
-    .createUserWithEmailAndPassword(signUpUserName, signUpUserPassword)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log(user);
-      alert("successfull sign in");
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert(errorCode, errorMessage);
-    });
+  if (checkPassword(signUpUserPassword, confirmPassword)) {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(signUpUserName, signUpUserPassword)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        alert("successfull sign in");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorCode, errorMessage);
+      });
+  }
 };
 
 const userSignIn = async (e) => {
@@ -58,10 +85,8 @@ const checkAuthState = async () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       // signed in
-      // take out display classes in html and just add them here instead of replacing them
       getElem("authSection").style.display = "none";
       getElem("counterSection").style.display = "flex";
-      // getElem("counterSection").style.height = "100%";
       getElem("signIn").style.display = "none";
       getElem("signUp").style.display = "none";
       getElem("headerSignInBtn").style.display = "none";
@@ -70,12 +95,10 @@ const checkAuthState = async () => {
       getElem("circle1").style.top = "2%";
       getElem("circle1").style.right = "11%";
       getElem("circle2").style.bottom = "9%";
-      // getElem("html").style.height = "100vh";
 
       console.log("signed in");
     } else {
       // signed out
-      // take out display classes in html and just add them here instead of replacing them
       getElem("signIn").style.display = "block";
       getElem("signUp").style.display = "none";
 
@@ -90,8 +113,6 @@ const checkAuthState = async () => {
       getElem("authSection").style.display = "flex";
 
       getElem("headerSignOutBtn").style.display = "none";
-
-      // getElem("htmlBody").style.minHeight = "100vh";
       console.log("signed out");
 
       unsubscribe && unsubscribe();

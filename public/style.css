@@ -296,6 +296,17 @@ form > input {
   width: 100%;
   text-align: center;
 }
+
+/* TODO: Add visibility toggle btn inside password input fields */
+/* .pw-container {
+  flex-direction: row;
+}
+.pw {
+  padding-right: 25px;
+}
+.visibility-btn {
+  margin-left: -25px
+} */
 /* *********************************************************************************************************** */
 /* Media Queries For Responsiveness */
 @media (max-width: 777px) {
