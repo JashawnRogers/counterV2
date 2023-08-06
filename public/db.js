@@ -4,7 +4,27 @@ const db = firebase.firestore();
 let entriesRef = db.collection("Entries");
 let unsubscribe;
 
-const deleteAllRows = () => {
+const deleteAllRowsFromDB = (user) => {
+  const confirmation = confirm("Are you sure you want to delete all entries?");
+
+  if (confirmation) {
+    entriesRef.where("uid", "==", user.uid).onSnapshot((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        entriesRef
+          .doc(doc.id)
+          .delete()
+          .catch((err) => {
+            alert("Error Deleting all documents!");
+            console.log("error removing document: ", err);
+          });
+      });
+    });
+  } else {
+    return;
+  }
+};
+
+const deleteAllRowsFromUI = () => {
   const rowCount = getElem("table").rows.length;
   for (let i = rowCount - 1; i > 0; i--) {
     getElem("table").deleteRow(i);
@@ -12,8 +32,6 @@ const deleteAllRows = () => {
 };
 
 const deleteRow = (e) => {
-  // if (!e.target.classList.contains("fa-trash-can")) return;
-
   const confirmation = confirm("Are you sure you want to delete?");
   if (confirmation) {
     entriesRef
@@ -72,6 +90,7 @@ firebase.auth().onAuthStateChanged((user) => {
 
     unsubscribe = entriesRef
       .where("uid", "==", user.uid)
+      .orderBy("date")
       .onSnapshot((snapshot) => {
         let changes = snapshot.docChanges();
         changes.forEach((change) => {
@@ -83,13 +102,16 @@ firebase.auth().onAuthStateChanged((user) => {
           }
         });
       });
+
+    on("click", getElem("deleteAll"), () => {
+      console.log("Delete all button clicked");
+      deleteAllRowsFromDB(user);
+    });
   } else {
-    deleteAllRows();
+    deleteAllRowsFromUI();
     unsubscribe && unsubscribe();
   }
 });
 on("click", getElem("table"), (e) => {
   deleteRow(e);
 });
-// on intial load check for existing data
-// on changes relay changes to ui
