@@ -2,10 +2,10 @@ import { getElem, on } from "/app.js";
 
 let unsubscribe;
 
-const checkPassword = (pw, confirmPw) => {
+const checkPassword = (pw, confirmPw, username) => {
   const errors = [];
-  if (pw.length < 6) {
-    errors.push("Your password must be at least 6 characters. ");
+  if (pw.length < 5) {
+    errors.push("Your password must be at least 5 characters. ");
   }
   if (pw.search(/(?=.*\d)/) < 0) {
     errors.push("Your password must contain at least one number. ");
@@ -18,6 +18,14 @@ const checkPassword = (pw, confirmPw) => {
   }
   if (pw !== confirmPw) {
     errors.push("The confirmation password does not match. ");
+  }
+  if (username.length < 4) {
+    errors.push("Username must be at least 4 characters. ");
+  }
+  if (username.search(/^[a-zA-Z0-9_]$/)) {
+    errors.push(
+      "Username can only contain alphanumeric characters with the exception of the underscore. "
+    );
   }
   if (errors.length > 0) {
     alert(errors.join("\n"));
@@ -32,14 +40,18 @@ const userSignUp = async (e) => {
   const signUpUserPassword = getElem("signUpUserPassword").value;
   const confirmPassword = getElem("confirmPassword").value;
 
-  if (checkPassword(signUpUserPassword, confirmPassword)) {
+  if (
+    checkPassword(
+      signUpUserPassword,
+      confirmPassword,
+      getElem("signUpUserName").value
+    )
+  ) {
     firebase
       .auth()
       .createUserWithEmailAndPassword(signUpUserName, signUpUserPassword)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-        alert("successfull sign in");
+      .then(() => {
+        console.log("successfull sign up");
       })
       .catch((error) => {
         const errorCode = error.code;
