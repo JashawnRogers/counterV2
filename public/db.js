@@ -55,14 +55,16 @@ const renderList = (doc) => {
   let c5 = tableRow.insertCell(4);
   let c6 = tableRow.insertCell(5);
   let c7 = tableRow.insertCell(6);
+  let c8 = tableRow.insertCell(7);
 
-  c1.innerText = doc.data().total;
-  c2.innerText = doc.data().foundTotal;
-  c3.innerText = doc.data().notFoundTotal;
-  c4.innerText = doc.data().archiveTotal;
-  c5.innerText = doc.data().date;
-  c6.innerText = doc.data().time;
-  c7.innerHTML = `<button class="table-delete-btn grow"><i id=${doc.id} class="fa-solid fa-trash-can fa-sm"></i><button>`;
+  c1.innerText = doc.data().task;
+  c2.innerText = doc.data().total;
+  c3.innerText = doc.data().foundTotal;
+  c4.innerText = doc.data().notFoundTotal;
+  c5.innerText = doc.data().archiveTotal;
+  c6.innerText = doc.data().date;
+  c7.innerText = doc.data().time;
+  c8.innerHTML = `<button class="table-delete-btn grow"><i id=${doc.id} class="fa-solid fa-trash-can fa-sm"></i><button>`;
 
   table.appendChild(tableRow);
 };
@@ -76,16 +78,21 @@ firebase.auth().onAuthStateChanged((user) => {
         parseInt(getElem("notFoundTotal").value) +
         parseInt(getElem("archiveTotal").value);
 
-      entriesRef.add({
-        uid: user.uid,
-        total: total,
-        foundTotal: parseInt(getElem("foundTotal").value),
-        notFoundTotal: parseInt(getElem("notFoundTotal").value),
-        archiveTotal: parseInt(getElem("archiveTotal").value),
-        date: todaysDate(),
-        time: getPhxTimeStamp(),
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      });
+      if (getElem("userTaskInput").value) {
+        entriesRef.add({
+          uid: user.uid,
+          task: getElem("userTaskInput").value,
+          total: total,
+          foundTotal: parseInt(getElem("foundTotal").value),
+          notFoundTotal: parseInt(getElem("notFoundTotal").value),
+          archiveTotal: parseInt(getElem("archiveTotal").value),
+          date: todaysDate(),
+          time: getPhxTimeStamp(),
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        });
+      } else {
+        alert("Please enter a task name");
+      }
     });
 
     unsubscribe = entriesRef

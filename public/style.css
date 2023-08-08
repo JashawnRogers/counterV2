@@ -84,8 +84,23 @@ header {
 
 .nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding-top: 10px;
+}
+
+
+
+.user-input-task {
+  height: 2.5rem;
+  margin-top: 1.5rem;
+  width: 350px;
+  padding-left: 0.5rem;
+  background: #fff;
+}
+
+
+.save-task-button:hover {
+  cursor: pointer;
 }
 
 .title {
@@ -125,6 +140,7 @@ section {
   width: 15rem;
   position: absolute;
   border-radius: 50%;
+  z-index: -1;
 }
 .circle1 {
   top: 23%;
@@ -182,14 +198,6 @@ section {
   justify-content: center;
   gap: 1rem;
 }
-
-/* .save {
-
-}
-
-.delete {
- 
-} */
 /* *********************************************************************************************************** */
 /* Table Section */
 .table-container {
