@@ -90,6 +90,7 @@ firebase.auth().onAuthStateChanged((user) => {
 
     unsubscribe = entriesRef
       .where("uid", "==", user.uid)
+      .where("date", "==", todaysDate())
       .orderBy("date")
       .onSnapshot((snapshot) => {
         let changes = snapshot.docChanges();

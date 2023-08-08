@@ -51,7 +51,7 @@ footer {
   transform: scale(1.1);
 }
 h1,h2,h3,h4,h5,h6 {
-  font-family: 'Bebas Nue', sans-serif;
+  font-family: 'Proza Libre', sans-serif;
 }
 a, p, input[type="text"],::placeholder, table > tbody >tr {
   font-family: 'Monteserrat', sans-serif;
