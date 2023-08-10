@@ -318,7 +318,7 @@ form > input {
 /* *********************************************************************************************************** */
 /* Media Queries For Responsiveness */
 @media (max-width: 777px) {
-  th {
+  /* th {
     display: none;
   }
 
@@ -343,7 +343,7 @@ form > input {
 
   .card:nth-child(n+2) {
     margin: 20px 0;
-  }
+  } */
 
 }
 @media (max-width: 425px) {

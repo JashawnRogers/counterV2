@@ -31,6 +31,14 @@ if (!getElem("archiveTotal").value) {
   getElem("archiveTotal").value = "0";
 }
 
+on("click", getElem("resetBtn"), (e) => {
+  e.preventDefault();
+  alert("clicked");
+  getElem("foundTotal").value = "0";
+  getElem("notFoundTotal").value = "0";
+  getElem("archiveTotal").value = "0";
+});
+
 const todaysDate = () => {
   const today = new Date();
   const date =
