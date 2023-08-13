@@ -104,7 +104,7 @@ header {
 }
 
 .title {
-  padding-left: 10px;
+  padding-left: 0px;
   font-size: 1.25rem;
   font-weight: 700;
   margin-left: 0px;
@@ -211,7 +211,6 @@ table {
 th, td, caption {
   padding: 0.75rem;
   text-align: center;
-  /* background: #fff; */
 }
 caption {
   font-size: 1.5rem;
@@ -231,8 +230,6 @@ tr:nth-of-type(2n) {
 .glass {
   background: white;
   background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
-  /* backdrop-filter: blur(1.25rem);
-  -webkit-backdrop-filter: blur(1.25rem); */
 }
 .auth-section {
   display: flex;
@@ -256,7 +253,6 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin-top: 3rem; */
 }
 .form-header {
   height: 65px;
@@ -289,9 +285,6 @@ form > input {
 .form-btn-container > button {
   background: #fff;
 }
-/* .form-submit-btn {
-  background: #fff;
-} */
 .reset-btn {
   width: 150px !important;
 }
@@ -305,48 +298,20 @@ form > input {
   text-align: center;
 }
 
-/* TODO: Add visibility toggle btn inside password input fields */
-/* .pw-container {
-  flex-direction: row;
-}
-.pw {
-  padding-right: 25px;
-}
-.visibility-btn {
-  margin-left: -25px
-} */
 /* *********************************************************************************************************** */
 /* Media Queries For Responsiveness */
 @media (max-width: 777px) {
-  /* th {
-    display: none;
+  .title {
+    font-size: 2rem;
+    margin-top: 26px
   }
-
-  td {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: 15ch auto;
-    padding: 0.5rem 1rem;
+ .user-input-task {
+  width: 250px;
+  margin-right: 10px;
+ }
+  .card {
+    margin-bottom: 10px;
   }
-
-  td:first-child {
-    padding-top: 2rem;
-  }
-
-  td:last-child {
-    padding-bottom: 2rem;
-  }
-
-  td::before {
-    content: attr(data-cell) ": ";
-  }
-
-  .card:nth-child(n+2) {
-    margin: 20px 0;
-  } */
-
-}
-@media (max-width: 425px) {
   .signIn-container, .signUp-container, .forgot-password-container {
     width: 18rem;
   }

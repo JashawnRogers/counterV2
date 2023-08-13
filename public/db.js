@@ -4,6 +4,25 @@ const db = firebase.firestore();
 let entriesRef = db.collection("Entries");
 let unsubscribe;
 
+const getTotal = () => {
+  if (getElem("foundTotal").value === "") {
+    getElem("foundTotal").value = "0";
+  }
+  if (getElem("notFoundTotal").value === "") {
+    getElem("notFoundTotal").value = "0";
+  }
+  if (getElem("archiveTotal").value === "") {
+    getElem("archiveTotal").value = "0";
+  }
+
+  const total =
+    parseInt(getElem("foundTotal").value) +
+    parseInt(getElem("notFoundTotal").value) +
+    parseInt(getElem("archiveTotal").value);
+
+  return total;
+};
+
 const deleteAllRowsFromDB = (user) => {
   const confirmation = confirm("Are you sure you want to delete all entries?");
 
@@ -73,16 +92,14 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     on("click", getElem("saveEntry"), (e) => {
       e.preventDefault();
-      const total =
-        parseInt(getElem("foundTotal").value) +
-        parseInt(getElem("notFoundTotal").value) +
-        parseInt(getElem("archiveTotal").value);
+
+      console.log(getElem("notFoundTotal").value);
 
       if (getElem("userTaskInput").value) {
         entriesRef.add({
           uid: user.uid,
           task: getElem("userTaskInput").value,
-          total: total,
+          total: getTotal(),
           foundTotal: parseInt(getElem("foundTotal").value),
           notFoundTotal: parseInt(getElem("notFoundTotal").value),
           archiveTotal: parseInt(getElem("archiveTotal").value),

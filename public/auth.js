@@ -101,6 +101,7 @@ const checkAuthState = async () => {
       getElem("counterSection").style.display = "flex";
       getElem("signIn").style.display = "none";
       getElem("signUp").style.display = "none";
+      getElem("userTaskInput").style.display = "flex";
       getElem("headerSignInBtn").style.display = "none";
       getElem("headerSignUpBtn").style.display = "none";
       getElem("headerSignOutBtn").style.display = "block";
@@ -113,6 +114,7 @@ const checkAuthState = async () => {
       // signed out
       getElem("signIn").style.display = "block";
       getElem("signUp").style.display = "none";
+      getElem("userTaskInput").style.display = "none";
 
       getElem("headerSignInBtn").style.display = "block";
       getElem("headerSignUpBtn").style.display = "block";
