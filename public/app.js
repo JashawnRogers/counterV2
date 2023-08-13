@@ -33,7 +33,7 @@ if (!getElem("archiveTotal").value) {
 
 on("click", getElem("resetBtn"), (e) => {
   e.preventDefault();
-  alert("clicked");
+  getElem("userTaskInput").value = "";
   getElem("foundTotal").value = "0";
   getElem("notFoundTotal").value = "0";
   getElem("archiveTotal").value = "0";
@@ -49,6 +49,12 @@ const todaysDate = () => {
     " / " +
     today.getFullYear();
   return date;
+};
+
+const expiryDate = () => {
+  const expiry = new Date();
+  expiry.setDate(expiry.getDate() + 30);
+  return expiry;
 };
 
 const getPhxTimeStamp = () => {
@@ -124,4 +130,4 @@ minus(getElem("notFoundMinus"));
 plus(getElem("archivePlus"));
 minus(getElem("archiveMinus"));
 
-export { getElem, on, todaysDate, getPhxTimeStamp };
+export { getElem, on, todaysDate, getPhxTimeStamp, expiryDate };

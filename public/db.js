@@ -1,8 +1,17 @@
-import { getElem, on, todaysDate, getPhxTimeStamp } from "/app.js";
+import { getElem, on, todaysDate, getPhxTimeStamp, expiryDate } from "/app.js";
 
 const db = firebase.firestore();
 let entriesRef = db.collection("Entries");
 let unsubscribe;
+
+const cutOffDate = () => {
+  let thirtyDaysAgo = new Date();
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+  const dateNow = Date.now() - thirtyDaysAgo;
+
+  return dateNow;
+};
 
 const deleteAllRowsFromDB = (user) => {
   const confirmation = confirm("Are you sure you want to delete all entries?");
@@ -89,11 +98,18 @@ firebase.auth().onAuthStateChanged((user) => {
           date: todaysDate(),
           time: getPhxTimeStamp(),
           createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          expiry: expiryDate(),
         });
       } else {
         alert("Please enter a task name");
       }
     });
+
+    // entriesRef.where("uid", "==", user.uid).onSnapshot((snapshot) => {
+    //   snapshot.docs.forEach((doc) => {
+    //     console.log();
+    //   });
+    // });
 
     unsubscribe = entriesRef
       .where("uid", "==", user.uid)
