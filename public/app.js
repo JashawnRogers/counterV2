@@ -1,5 +1,4 @@
 const getElem = (id) => document.getElementById(id);
-const createElem = (elem) => document.createElement(elem);
 
 const on = R.curry(function (eventType, element, callback) {
   element.addEventListener(eventType, callback);
