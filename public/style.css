@@ -203,6 +203,9 @@ section {
 .table-container {
   margin-top: 25px;
   padding: 1rem;
+  max-width: 90%;
+  max-height: 600px;
+  overflow-y: auto;
 }
 table {
   background: #D3D3D3;
@@ -302,9 +305,11 @@ form > input {
 /* Media Queries For Responsiveness */
 @media (max-width: 777px) {
   .title {
-    font-size: 2rem;
-    margin-top: 26px
+    /* font-size: 1rem;
+    margin-top: 26px */
+    display: none;
   }
+
  .user-input-task {
   width: 250px;
   margin-right: 10px;
@@ -335,7 +340,7 @@ form > input {
     font-weight: 700;
   }
   .links {
-    padding-top: 20px;
-    padding-right: 30px;
+    margin-top: 20px;
+    margin-right: 30px;
   }
 }

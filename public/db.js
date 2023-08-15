@@ -93,8 +93,6 @@ firebase.auth().onAuthStateChanged((user) => {
     on("click", getElem("saveEntry"), (e) => {
       e.preventDefault();
 
-      console.log(getElem("notFoundTotal").value);
-
       if (getElem("userTaskInput").value) {
         entriesRef.add({
           uid: user.uid,
@@ -108,6 +106,7 @@ firebase.auth().onAuthStateChanged((user) => {
           createdAt: firebase.firestore.FieldValue.serverTimestamp(),
           expiry: expiryDate(),
         });
+        alert("Entry successfully created");
       } else {
         alert("Please enter a task name");
       }

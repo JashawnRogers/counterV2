@@ -4,6 +4,7 @@ let unsubscribe;
 
 const checkPassword = (pw, confirmPw, username) => {
   const errors = [];
+  console.log(username);
   if (pw.length < 5) {
     errors.push("Your password must be at least 5 characters. ");
   }
@@ -22,7 +23,7 @@ const checkPassword = (pw, confirmPw, username) => {
   if (username.length < 4) {
     errors.push("Username must be at least 4 characters. ");
   }
-  if (username.search(/^[a-zA-Z0-9_]$/)) {
+  if (!username.search(/^[a-zA-Z0-9_]$/)) {
     errors.push(
       "Username can only contain alphanumeric characters with the exception of the underscore. "
     );
