@@ -1,4 +1,11 @@
-import { getElem, on, todaysDate, getPhxTimeStamp, expiryDate } from "/app.js";
+import {
+  getElem,
+  on,
+  todaysDate,
+  getPhxTimeStamp,
+  expiryDate,
+  resetUI,
+} from "/app.js";
 
 const db = firebase.firestore();
 let entriesRef = db.collection("Entries");
@@ -21,26 +28,6 @@ const getTotal = () => {
     parseInt(getElem("archiveTotal").value);
 
   return total;
-};
-
-const deleteAllRowsFromDB = (user) => {
-  const confirmation = confirm("Are you sure you want to delete all entries?");
-
-  if (confirmation) {
-    entriesRef.where("uid", "==", user.uid).onSnapshot((snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        entriesRef
-          .doc(doc.id)
-          .delete()
-          .catch((err) => {
-            alert("Error Deleting all documents!");
-            console.log("error removing document: ", err);
-          });
-      });
-    });
-  } else {
-    return;
-  }
 };
 
 const deleteAllRowsFromUI = () => {
@@ -77,10 +64,10 @@ const renderList = (doc) => {
   let c8 = tableRow.insertCell(7);
 
   c1.innerText = doc.data().task;
-  c2.innerText = doc.data().total;
-  c3.innerText = doc.data().foundTotal;
-  c4.innerText = doc.data().notFoundTotal;
-  c5.innerText = doc.data().archiveTotal;
+  c2.innerText = doc.data().foundTotal;
+  c3.innerText = doc.data().notFoundTotal;
+  c4.innerText = doc.data().archiveTotal;
+  c5.innerText = doc.data().total;
   c6.innerText = doc.data().date;
   c7.innerText = doc.data().time;
   c8.innerHTML = `<button class="table-delete-btn grow"><i id=${doc.id} class="fa-solid fa-trash-can fa-sm"></i><button>`;
@@ -107,6 +94,7 @@ firebase.auth().onAuthStateChanged((user) => {
           expiry: expiryDate(),
         });
         alert("Entry successfully created");
+        resetUI();
       } else {
         alert("Please enter a task name");
       }
@@ -127,11 +115,6 @@ firebase.auth().onAuthStateChanged((user) => {
           }
         });
       });
-
-    on("click", getElem("deleteAll"), () => {
-      console.log("Delete all button clicked");
-      deleteAllRowsFromDB(user);
-    });
   } else {
     deleteAllRowsFromUI();
     unsubscribe && unsubscribe();

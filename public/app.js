@@ -20,6 +20,13 @@ const minus = (elem) => {
   });
 };
 
+const resetUI = () => {
+  getElem("userTaskInput").value = "";
+  getElem("foundTotal").value = "0";
+  getElem("notFoundTotal").value = "0";
+  getElem("archiveTotal").value = "0";
+};
+
 if (!getElem("foundTotal").value) {
   getElem("foundTotal").value = "0";
 }
@@ -30,13 +37,7 @@ if (!getElem("archiveTotal").value) {
   getElem("archiveTotal").value = "0";
 }
 
-on("click", getElem("resetBtn"), (e) => {
-  e.preventDefault();
-  getElem("userTaskInput").value = "";
-  getElem("foundTotal").value = "0";
-  getElem("notFoundTotal").value = "0";
-  getElem("archiveTotal").value = "0";
-});
+on("click", getElem("resetBtn"), resetUI);
 
 const todaysDate = () => {
   const today = new Date();
@@ -98,27 +99,6 @@ const closeSignUpModal = on("click", getElem("closeSignUpBtn"), () => {
   getElem("signUp").style.display = "none";
 });
 
-// const openForgotPwModal = on("click", getElem("forgotPasswordLink"), () => {
-//   getElem("signIn").classList.replace("display-block", "display-none");
-//   getElem("forgotPassword").classList.replace("display-none", "display-block");
-// });
-
-// const openSignInLinkPwModal = on(
-//   "click",
-//   getElem("signInLink-forgotPwModal"),
-//   () => {
-//     getElem("forgotPassword").classList.replace(
-//       "display-block",
-//       "display-none"
-//     );
-//     getElem("signIn").classList.replace("display-none", "display-block");
-//   }
-// );
-
-// const closeForgotPwModal = on("click", getElem("closeForgotPwBtn"), () => {
-//   getElem("forgotPassword").classList.replace("display-block", "display-none");
-// });
-
 //  counter cards even handlers
 plus(getElem("foundPlus"));
 minus(getElem("foundMinus"));
@@ -129,4 +109,4 @@ minus(getElem("notFoundMinus"));
 plus(getElem("archivePlus"));
 minus(getElem("archiveMinus"));
 
-export { getElem, on, todaysDate, getPhxTimeStamp, expiryDate };
+export { getElem, on, todaysDate, getPhxTimeStamp, expiryDate, resetUI };
